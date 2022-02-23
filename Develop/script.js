@@ -1,4 +1,16 @@
 // Assignment code here
+var promptlengthtext = window.prompt(
+  "Password length must be between 8-128 numbers"
+);
+if (
+  promptlengthtext === "" ||
+  promptlengthtext === null ||
+  parseInt(promptlengthtext) < 8 ||
+  parseInt(promptlengthtext) > 128 ||
+  isNaN(promptlengthtext)
+) {
+  window.alert("You need to provide a valid answer! Please try again.");
+}
 if (promptlengthtext >= 8 && promptlengthtext <= 128) {
   var Lowercase = confirm("Do you want a lowercase letter?");
   var Uppercase = confirm("Do you want a uppercase letter?");
@@ -46,30 +58,19 @@ generateEl.addEventListener("click", (event) => {
   );
 });
 
-function generatePassword() {
-  var promptlengthtext = window.prompt(
-    "Password length must be between 8-128 numbers"
-  );
-  if (
-    promptlengthtext === "" ||
-    promptlengthtext === null ||
-    parseInt(promptlengthtext) < 8 ||
-    parseInt(promptlengthtext) > 128 ||
-    isNaN(promptlengthtext)
-  ) {
-    window.alert("You need to provide a valid answer! Please try again.");
-    return generatePassword();
-  }
-
-  const resultEl = document.getElementById("password");
-  var length = parseInt(promptlengthtext);
-  var textPositon = 0;
-  const generatedtext = [];
-  while (textPositon < length) {
-    generatedtext[textPositon] = getRandomLower();
-    console.log(generatedtext[textPositon]);
-    textPositon = textPositon + 1;
-  }
+function generatePassword(lower, upper, number, symbol, length) {
+  let generatePassword = "";
+  const typesCounted = lower + upper + number + symbol;
+  const typesArr = [
+    {
+      lower,
+    },
+    { upper },
+    { symbol },
+    {
+      number,
+    },
+  ].filter((item) => Object.values(item)[0]);
 }
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
