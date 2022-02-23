@@ -1,20 +1,4 @@
 // Assignment code here
-//Generator functions
-//const resultEl = document.getElementById("result");
-//const lengthEl = document.getElementById("length");
-//const uppercaseEl = document.getElementById("uppercase");
-//const lowercaseEl = document.getElementById("lowercase");
-//const numbersEl = document.getElementById("numbers");
-//const symbolsEl = document.getElementById("symbols");
-//const generateEl = document.getElementById("generate");
-//const clipboardEl = document.getElementById("clipboard");
-
-const randomFunc = {
-  lower: getRandomLower,
-  upper: getRandomUpper,
-  number: getRandomNumber,
-  symbol: getRandomSymbol,
-};
 
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -37,6 +21,13 @@ function getRandomSymbol() {
 }
 console.log(getRandomSymbol);
 
+const randomFunc = {
+  lower: getRandomLower,
+  upper: getRandomUpper,
+  number: getRandomNumber,
+  symbol: getRandomSymbol,
+};
+
 // Get references to the #generate element
 var generateEl = document.querySelector("#generate");
 
@@ -49,38 +40,38 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateEl.addEventListener("click", () => {
-  const length = +lengthEl.value;
-  const hasLower = lowercaseEl.checked;
-  const hasUpper = uppercaseEl.checked;
-  const hasNumber = numbersEl.checked;
-  const hasSymbol = symbolsEl.checked;
-
-  resultEl.innerText = generatePassword(
-    hasLower,
-    hasUpper,
-    hasNumber,
-    hasSymbol,
-    length
-  );
+generateEl.addEventListener("click", (event) => {
+  generatePassword();
 });
-function generatePassword(lower, upper, number, symbol, length) {
-  let generatePassword = "";
-  const typesCount = lower + upper + number + symbol;
-  const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
-    (item) => Object.values(item)[0]
+
+function generatePassword() {
+  var promptlengthtext = window.prompt(
+    "Password length must be between 8-128 numbers"
   );
-  console.log("typesArr:", typesArr);
-
-  if (typesCount === 0) {
-    return "";
+  if (
+    promptlengthtext === "" ||
+    promptlengthtext === null ||
+    parseInt(promptlengthtext) < 8 ||
+    parseInt(promptlengthtext) > 128 ||
+    isNaN(promptlengthtext)
+  ) {
+    window.alert("You need to provide a valid answer! Please try again.");
+    return generatePassword();
   }
-  for (let i = 0; i < length; i += typesCount) {
-    typesArr.forEach((type) => {
-      const funcName = Object.keys(type)[0];
 
-      generatePassword += randomFunc[funcName]();
-    });
+  if (promptlengthtext >= 8 && promptlengthtext <= 128) {
+    var Lowercase = confirm("Do you want a lowercase letter?");
+    var Uppercase = confirm("Do you want a uppercase letter?");
+    var Number = confirm("Do you want a number?");
+    var Symbol = confirm("Do you want a symbol?");
   }
-  console.log(generatePassword);
+
+  var length = parseInt(promptlengthtext);
+  var textPositon = 0;
+  const generatedtext = [];
+  while (textPositon < length) {
+    generatedtext[textPositon] = getRandomLower();
+    console.log(generatedtext[textPositon]);
+    textPositon = textPositon + 1;
+  }
 }
