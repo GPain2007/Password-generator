@@ -1,25 +1,17 @@
 // Assignment code here
-
-function getRandomLower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+if (promptlengthtext >= 8 && promptlengthtext <= 128) {
+  var Lowercase = confirm("Do you want a lowercase letter?");
+  var Uppercase = confirm("Do you want a uppercase letter?");
+  var Number = confirm("Do you want a number?");
+  var Symbol = confirm("Do you want a symbol?");
 }
-console.log(getRandomLower);
-
-function getRandomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+while (Lowercase != true && Uppercase != true && Number != true && Symbol) {
+  window.prompt("Must pick at least one of the values to generate a password!");
+  Lowercase = confirm("Do you want a lowercase letter?");
+  Uppercase = confirm("Do you want a uppercase letter?");
+  Number = confirm("Do you want a number?");
+  Symbol = confirm("Do you want a symbol?");
 }
-console.log(getRandomUpper);
-
-function getRandomNumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-console.log(getRandomNumber);
-
-function getRandomSymbol() {
-  const symbols = "!@#$%^&*(){}?><|}{";
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
-console.log(getRandomSymbol);
 
 const randomFunc = {
   lower: getRandomLower,
@@ -41,7 +33,17 @@ function writePassword() {
 
 // Add event listener to generate button
 generateEl.addEventListener("click", (event) => {
-  generatePassword();
+  const hasLower = Lowercase.true;
+  const hasUpper = Uppercase.true;
+  const hasNumber = Number.true;
+  const hasSymbol = Symbol.true;
+  resultEl.innerText = generatePassword(
+    hasLower,
+    hasUpper,
+    hasNumber,
+    hasSymbol,
+    length
+  );
 });
 
 function generatePassword() {
@@ -59,13 +61,7 @@ function generatePassword() {
     return generatePassword();
   }
 
-  if (promptlengthtext >= 8 && promptlengthtext <= 128) {
-    var Lowercase = confirm("Do you want a lowercase letter?");
-    var Uppercase = confirm("Do you want a uppercase letter?");
-    var Number = confirm("Do you want a number?");
-    var Symbol = confirm("Do you want a symbol?");
-  }
-
+  const resultEl = document.getElementById("password");
   var length = parseInt(promptlengthtext);
   var textPositon = 0;
   const generatedtext = [];
@@ -75,3 +71,23 @@ function generatePassword() {
     textPositon = textPositon + 1;
   }
 }
+function getRandomLower() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+console.log(getRandomLower);
+
+function getRandomUpper() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+console.log(getRandomUpper);
+
+function getRandomNumber() {
+  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+}
+console.log(getRandomNumber);
+
+function getRandomSymbol() {
+  const symbols = "!@#$%^&*(){}?><|}{";
+  return symbols[Math.floor(Math.random() * symbols.length)];
+}
+console.log(getRandomSymbol);
