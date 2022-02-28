@@ -7,3 +7,7 @@ I used CharCode reference when making my code. You'll see that in my functions. 
 
 
 I tried to show the changes in my code with many commits but i got to working on the code for hours but made sure to save and push everytime I closed it down for the night
+
+I also used confirm to make sure that the selected changes were the ones that they wanted in the code.
+
+<img width="1512" alt="Screen Shot 2022-02-28 at 10 25 45 AM" src="https://user-images.githubusercontent.com/97716889/156019750-39beb7de-90ef-41cd-8594-64617ea027d5.png">
